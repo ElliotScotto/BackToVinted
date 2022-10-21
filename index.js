@@ -9,6 +9,7 @@ app.use(express.json());
 mongoose.connect(process.env.MONGODB_URI);
 app.use(cors());
 //
+console.log("salut");
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
