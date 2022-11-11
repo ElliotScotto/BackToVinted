@@ -9,7 +9,7 @@ app.use(express.json());
 mongoose.connect(process.env.MONGODB_URI);
 app.use(cors());
 //
-console.log("salut");
+// console.log("salut");
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
@@ -30,9 +30,10 @@ app.use(offerRoutes);
 app.get("/", (req, res) => {
   res.json({ message: "Home : Welcome on my server" });
 });
-app.all("*", (req, res) => {
-  res.status(404).json("Page introuvable");
-});
-app.listen(process.env.PORT, () => {
-  console.log("Server has started");
+// app.all("*", (req, res) => {
+//   res.status(404).json("Page introuvable de back-vinted");
+// });
+const PORT = 3000;
+app.listen(process.env.PORT || 3000, () => {
+  console.log(`Server has started on ${PORT}`);
 });
