@@ -33,7 +33,7 @@ app.get("/", (req, res) => {
 // app.all("*", (req, res) => {
 //   res.status(404).json("Page introuvable de back-vinted");
 // });
-const PORT = 3000;
-app.listen(process.env.PORT || 3000, () => {
+const PORT = 4000;
+app.listen(process.env.PORT || 4000, () => {
   console.log(`Server has started on ${PORT}`);
 });

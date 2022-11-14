@@ -1,6 +1,9 @@
 const express = require("express");
+const app = express();
 const router = express.Router();
 const fileUpload = require("express-fileupload");
+const cors = require("cors");
+app.use(cors());
 const cloudinary = require("cloudinary").v2;
 const User = require("../models/User");
 const Offer = require("../models/Offer");
@@ -10,6 +13,22 @@ const convertToBase64 = (file) => {
   return `data:${file.mimetype};base64,${file.data.toString("base64")}`;
 };
 //
+router.post("/upload", fileUpload(), async (req, res) => {
+  try {
+    console.log("Token : ", req.headers.authorization);
+    console.log("Body : ", req.body);
+    console.log("Fichiers : ", req.files);
+    if (req.files.picture) {
+      const result = await cloudinary.uploader.upload(
+        convertToBase64(req.files.picture)
+      );
+    }
+    console.log(result);
+    res.json(result);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
 //
 router.post(
   "/offer/publish",
